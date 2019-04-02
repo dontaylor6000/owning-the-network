@@ -100,7 +100,8 @@ Lets get that top secret file!
 
 1. Connect to the server above on the port open with `nc`
 2. [It's dangerous to go alone! Take this.](http://www.nsftools.com/tips/RawFTP.htm)
-3. Retrieve that file!  Paste it's contents here.
+3. Retrieve that file!  You'll need a username and password, which I wont give
+   you, but is very easy to guess.  Paste the contents of the secret file here.
 
 
 ### Acknowledgement
