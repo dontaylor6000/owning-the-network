@@ -84,21 +84,26 @@ Now we should be seeing some traffic from our sniffing.
    the location and author, make sure it works, and document it).  Be sure to
    include your `port-knocker.py`, i understand that this may not be automated,
    so be sure to document how you created and sent the port knock sequence.
-4. You can check to see if your port knock works with the following command:
-   `sudo nmap 10.5.0.6 -e tap0`.  Whats new since the last time you scanned
-   this?
+4. Check your network after your port knock with `sudo tcpdump -i tap0`.  What
+   is new (if you dont see anything new you might need to look over your port
+   knocker)?
 
-### Task 4 - Open Sesame
-You should now be allowed access to a port on the suspected FTP server.  Scan
-the server with namp to verify this.
+### Task 4 - A whole new world
+Take a look at what is going on on your internal network.
 
-1. Print your `nmap` command and relevant output in `lab03.txt`.
-2. Attempt to connect to this port with nc.  What is the response?
+1. Who is talking with who?
+2. Run an nmap on the new space and paste the output.  Are there any systems
+   missing that you see traffic from?  
+3. Inspect those systems further with `nmap`.  What ports are open?
 
-### Task 5 - 
+### Task 5 - Open Sesame
+Lets get that top secret file!
 
-
+1. Connect to the server above on the port open with `nc`
+2. [It's dangerous to go alone! Take this.](http://www.nsftools.com/tips/RawFTP.htm)
+3. Retrieve that file!  Paste it's contents here.
 
 
 ### Acknowledgement
 Huge shoutout to [jfsulliv](https://github.com/jfsulliv) for uploading scapyhunt!
+
