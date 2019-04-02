@@ -74,7 +74,19 @@ few different things that could be causing this, lets investigate.
    traffic on the network.  Verify this with wireshark.
 
 ### Task 3 - The sincerest form of flattery
+Now we should be seeing some traffic from our sniffing.  
 
+1. Inspect this traffic in comparison to your previous nmap?
+2. Investigate port knocking.  Describe what a port knock is.
+3. Using scapy, perform the port knock that is happening between `10.5.0.4` and
+   `10.5.0.6`.  (hint, this one you may be easier for you to do on your own than
+   copy someone elses work but the same rule applies, if you find it just source
+   the location and author, make sure it works, and document it).  Be sure to
+   include your `port-knocker.py`, i understand that this may not be automated,
+   so be sure to document how you created and sent the port knock sequence.
+4. You can check to see if your port knock works with the following command:
+   `sudo nmap 10.5.0.6 -e tap0`.  Whats new since the last time you scanned
+   this?
 
 ### Task 4 - Open Sesame
 You should now be allowed access to a port on the suspected FTP server.  Scan

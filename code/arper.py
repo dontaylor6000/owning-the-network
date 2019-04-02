@@ -3,9 +3,9 @@ import os
 import sys
 import threading
 
-interface    = "en1"
-target_ip    = "172.16.1.71"
-gateway_ip   = "172.16.1.254"
+interface    = "tap0"
+target_ip    = "10.5.0.6"
+gateway_ip   = "10.5.0.1"
 packet_count = 1000
 poisoning    = True
     
@@ -64,8 +64,7 @@ print "[*] Setting up %s" % interface
 gateway_mac = get_mac(gateway_ip)
 
 if gateway_mac is None:
-    print "[!!!] Failed to get gateway MAC. Exiting."
-    sys.exit(0)
+    gateway_mac = "12:67:7e:b7:6d:c8"
 else:
     print "[*] Gateway %s is at %s" % (gateway_ip,gateway_mac)
 
