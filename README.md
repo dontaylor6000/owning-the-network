@@ -67,38 +67,41 @@ few different things that could be causing this, lets investigate.
    interface.  (I do not care if you find a scapy cam table overflow online so
    long as you make it work and document where you obtained it and the author).
 
-   Be sure to identify all key parts of the source code with comments and upload it along with
-   your `lab03.txt` (please use a `.tar.gz` format).
+   Be sure to identify all key parts of the source code with comments and upload
+   it along with your `lab03.txt` (please use a `.tar.gz` format).
 5. If your CAM table overflow is successful you should now see additional
-   traffic on the network.  Verify this with wireshark.
+   traffic on the network.  Verify this with tcpdump/wireshark.
 
 ### Task 3 - The sincerest form of flattery
-Now we should be seeing some traffic from our sniffing.  
+Now we should be seeing some traffic flowing on our network.  
 
 1. Inspect this traffic in comparison to your previous nmap?
 2. Investigate port knocking.  Describe what a port knock is.
 3. Using scapy, perform the port knock that is happening between `10.5.0.4` and
-   `10.5.0.6`.  (hint, this one you may be easier for you to do on your own than
+   `10.5.0.6`.  (hint, this one may be easier for you to do on your own than
    copy someone elses work but the same rule applies, if you find it just source
-   the location and author, make sure it works, and document it).  Be sure to
-   include your `port-knocker.py`, i understand that this may not be automated,
-   so be sure to document how you created and sent the port knock sequence.
+   the location and author, make sure it works, and document it).  
+   
+   Be sure to include your `port-knocker.py`.  Describe your implementation, how
+   you created it, and if there is any human interaction required to implement.
 4. Check your network after your port knock with `sudo tcpdump -i tap0`.  What
-   is new (if you dont see anything new you might need to look over your port
-   knocker)?
+   is new?
+   (if you dont see anything new you might need to look over your port
+   knocker)
 
 ### Task 4 - A whole new world
 Take a look at what is going on on your internal network.
 
 1. Who is talking with who?
-2. Run an nmap on the new space and paste the output.  Are there any systems
-   missing that you see traffic from?  
+2. Run an nmap on the new CIDR space and paste the output.  Are there any systems
+   missing from your nmap that you see traffic from in tcpdump?  
 3. Inspect those systems further with `nmap`.  What ports are open?
 
 ### Task 5 - Open Sesame
 Lets get that top secret file!
 
-1. Connect to the server above on the port open with `nc`
+1. What do you think the secret server IP is?  Why?  Connect to this server 
+   with `nc` on the standard FTP port.
 2. [It's dangerous to go alone! Take this.](http://www.nsftools.com/tips/RawFTP.htm)
 3. Retrieve that file!  You'll need a username and password, which I wont give
    you, but is very easy to guess.  Paste the contents of the secret file here.
