@@ -1,105 +1,92 @@
-# Owning the Network
+# Lab 3 - Owning the Network
 
 ### Introduction
-We have covered a good number of tools so far that perform all sorts of packet
-creation/capture/manipulation tasks, but most of these tools were created with a
-specific goal in mind.  It turns out if you need to make some changes to how
-these tols behave you need to build an entire new tool (or at least rebuild the
-one you are using).  Because of this we introduce scapy.
+We introduced scapy at a mid to high level in our in-class exercise last week.
+In this lab we will be using scapy to actually perform several common attacks
+using some of the more advanced features scapy provides.
 
-
-> From [scapy.net](https://scapy.net/):
-> Scapy is a powerful interactive packet manipulation program. It is able to forge
-> or decode packets of a wide number of protocols, send them on the wire, capture
-> them, match requests and replies, and much more. It can easily handle most
-> classical tasks like scanning, tracerouting, probing, unit tests, attacks or
-> network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping,
-> tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other
-> specific tasks that most other tools can’t handle, like sending invalid frames,
-> injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache
-> poisoning, VOIP decoding on WEP encrypted channel, …), etc.
+Two things to keep in mind:
+1. This lab will require more programming and google foo than previous labs, pay
+   attention to Lab Talk for any communications or hints.
+2. Solutions to this challenge exist, please be sure to answer ALL questions
+   asked about your process.
 
 ### Background
+In this challenge you will be analyzing network traffic in an attempt to gain
+access to an FTP server containing a very important document.  Your task is to
+connect to this service and retrieve it.
 
+You will be using the following concepts:
+* `bash` / terminal-fu
+* packet capture / manipulation with `scapy`
+* pcap analysis (wireshark or other)
+* Router modes of operation ( )
+* Network topography
+* gateways
+* `nc`
+
+This repository will guide you through the exercises but there will be a bit of
+outside research required to answer some of the questions.
 
 ### Resources
 * [The scapy python library](https://scapy.net/)
 * [`/code`](../blob/master/code/)
-* [AWS educate (Login link)](https://www.awseducate.com/signin/SiteLogin)
-* [AWS Build link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab1.yml)
+* [`/scapy-hunt`](../blob/master/scapy-hunt)
+* Either your local Parrot OS Virtual Maching or and AWS linux instance
+  * If using AWS, [AWS educate (Login link)](https://www.awseducate.com/signin/SiteLogin)
+  * [AWS Build link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab1.yml)
 
-### Task 1 -
-Lets start with a very basic packet sniffer:
+### Task 1 - Are you even listening?
+To begin this lab, start up your Parrot OS VM (or ssh into your AWS Ubuntu
+Public instance).  Clone this repository into your home directory and run the 
+following command (editing as necessary for path differences):
+``` 
+sudo python ~/ceg-4900-lab-3/scapy-hunt/scapyHunt.py
 ```
-from scapy.all import *
+**Do not close this window!**  The above command needs to continue to run while
+you are working on this lab.
 
-def packet_callback(packet):
-    print packet.show()
+You should notice a new networking interface available (`sudo tcpdump -D`)
+called `tap0`.  This interface is being created by scapyHunt.py and simulates a
+real network.  **Be sure to specify this interface when attempting to run
+commands!**
 
-sniff(prn=packet_callback,count=1)
-```
+1. Figure out as much as you can about the network. 
+  * What is it's CIDR?
+  * What  hosts are on the network?
+  * What traffic do you see on this interface?
 
-When executed with `sudo` the above will capture a single packet on any
-interface on the system and output it like so:
-```
-###[ Ethernet ]### 
-  dst       = 78:d2:94:35:2a:9d
-  src       = 60:57:18:e6:95:3d
-  type      = 0x800
-###[ IP ]### 
-     version   = 4
-     ihl       = 5
-     tos       = 0x0
-     len       = 52
-     id        = 20192
-     flags     = DF
-     frag      = 0
-     ttl       = 64
-     proto     = tcp
-     chksum    = 0x4115
-     src       = 192.168.1.121
-     dst       = 35.164.197.9
-     \options   \
-###[ TCP ]### 
-        sport     = 59152
-        dport     = https
-        seq       = 1436241650
-        ack       = 3529910129
-        dataofs   = 8
-        reserved  = 0
-        flags     = A
-        window    = 298
-        chksum    = 0x53f8
-        urgptr    = 0
-        options   = [('NOP', None), ('NOP', None), ('Timestamp', (10757512, 240368411))]
+### Task 2 - Talk to me goose
+It looks like we are not seeing much traffic on this network.  There are a
+few different things that could be causing this, lets investigate.
 
-None
-```
+1. How do networking hubs and switches differ when transferring packets to a
+   device on the hub/switch?
+2. What is a CAM Table on a network switch?
+3. What is the goal of a CAM table overflow?
+4. Using Scapy, develop a CAM table overflow and deploy it on your `tap0`
+   interface.  (I do not care if you find a scapy cam table overflow online so
+   long as you make it work and document where you obtained it and the author).
 
-Now lets do something more interesting.
-scapy as ping (ICMP, TCP, and UDP ping)
+   Be sure to identify all key parts of the source code with comments and upload it along with
+   your `lab03.txt` (please use a `.tar.gz` format).
+5. If your CAM table overflow is successful you should now see additional
+   traffic on the network.  Verify this with wireshark.
+
+### Task 3 - The sincerest form of flattery
 
 
-### Task 2 -
-scapy as nmap
+### Task 4 - Open Sesame
+You should now be allowed access to a port on the suspected FTP server.  Scan
+the server with namp to verify this.
+
+1. Print your `nmap` command and relevant output in `lab03.txt`.
+2. Attempt to connect to this port with nc.  What is the response?
+
+### Task 5 - 
 
 
-### Task 3 -
-scapy as fuzzer
-
-### Task 4
-I'm tired of doing all the work for this class...  Find a github repository with
-some scapy code and examples (that isn't a fork of https://github.com/0x90/uberscapy ).
-
-* Describe what is so cool about it
-* Pick one specific tool/technique/script and answer the following:
-  * What doe sthe script do?
-  * What kind of AWS environment would you need to test it out?
 
 
 ### Acknowledgement
-Portions of this lab were derived from [Black Hat Python: Python Programming for
-Hackers and Pentesters, by Justin Seitz](https://nostarch.com/blackhatpython).
-
-Huge shoutout to [0x90](https://github.com/0x90) who has some seriously scary tools
-available.
+Huge shoutout to [jfsulliv](https://github.com/jfsulliv) for uploading scapyhunt!
