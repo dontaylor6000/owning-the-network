@@ -30,7 +30,6 @@ outside research required to answer some of the questions.
 
 ### Resources
 * [The scapy python library](https://scapy.net/)
-* [`/code`](../blob/master/code/)
 * [`/scapy-hunt`](../blob/master/scapy-hunt)
 * Either your local Parrot OS Virtual Maching or and AWS linux instance
   * If using AWS, [AWS educate (Login link)](https://www.awseducate.com/signin/SiteLogin)
