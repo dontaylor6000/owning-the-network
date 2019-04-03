@@ -8,8 +8,9 @@ using some of the more advanced features scapy provides.
 Two things to keep in mind:
 1. This lab will require more programming and google foo than previous labs, pay
    attention to Lab Talk for any communications or hints.
-2. Solutions to this challenge exist, please be sure to answer ALL questions
-   asked about your process.
+2. Please be sure to answer ALL questions asked about your process.  If you used
+   a command, be sure to paste the command in your `lab3.txt`, if you have any
+   issues please go out to lab talk!!!
 
 ### Background
 In this challenge you will be analyzing network traffic in an attempt to gain
