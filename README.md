@@ -14,7 +14,7 @@ Two things to keep in mind:
 
 ### Background
 In this challenge you will be analyzing network traffic in an attempt to gain
-access to an FTP server containing a very important document.  Your task is to
+access to a FTP server containing a very important document.  Your task is to
 connect to this service and retrieve it.
 
 You will be using the following concepts:
@@ -32,16 +32,15 @@ outside research required to answer some of the questions.
 ### Resources
 * [The scapy python library](https://scapy.net/)
 * [`/scapy-hunt`](../blob/master/scapy-hunt)
-* Either your local Parrot OS Virtual Maching or and AWS linux instance
-  * If using AWS, [AWS educate (Login link)](https://www.awseducate.com/signin/SiteLogin)
-  * [AWS Build link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=CEG-4900Lab02&templateURL=https:%2F%2Fs3.amazonaws.com%2Fwsu-cecs-cf-templates%2Fceg4900lab1.yml)
+* Your local Parrot OS Virtual Maching (no AWS support yet, will update here
+  when it is available)
 
 ### Task 1 - Are you even listening?
 To begin this lab, start up your Parrot OS VM (or ssh into your AWS Ubuntu
 Public instance).  Clone this repository into your home directory and run the 
 following command (editing as necessary for path differences):
 ``` 
-sudo python ~/ceg-4900-lab-3/scapy-hunt/scapyHunt.py
+sudo python ~/ceg-4900-lab3/scapy-hunt/scapyHunt.py
 ```
 **Do not close this window!**  The above command needs to continue to run while
 you are working on this lab.
@@ -58,7 +57,8 @@ commands!**
 
 ### Task 2 - Talk to me goose
 It looks like we are not seeing much traffic on this network.  There are a
-few different things that could be causing this, lets investigate.
+few different things that could be causing this.  We are going to focus on
+one specific case.
 
 1. How do networking hubs and switches differ when transferring packets to a
    device on the hub/switch?
