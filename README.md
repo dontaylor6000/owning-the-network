@@ -20,7 +20,7 @@ You will be using the following concepts:
 * `bash` / terminal-fu
 * packet capture / manipulation with `scapy`
 * pcap analysis (wireshark or other)
-* Router modes of operation ( )
+* Router modes of operation (switch vs hub)
 * Network topography
 * gateways
 * `nc`
