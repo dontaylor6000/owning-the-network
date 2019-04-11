@@ -31,7 +31,7 @@ outside research required to answer some of the questions.
 
 ### Resources
 * [The scapy python library](https://scapy.net/)
-* [`/scapy-hunt`](../blob/master/scapy-hunt)
+* [`/scapy-hunt`](../master/scapy-hunt)
 * Your local Parrot OS Virtual Maching (no AWS support yet, will update here
   when it is available)
 
